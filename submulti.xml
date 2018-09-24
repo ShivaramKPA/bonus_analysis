@@ -1,0 +1,31 @@
+ <Request>
+  <Email email="nathand@jlab.org" request="false" job="true" />
+  <Name name="GEMCrun" />
+  <Project name="bonus" />
+  <!-- <OS name="centos7.2" /> -->
+  <Track name="simulation" />
+  <Memory space="2" unit="GB" />
+  
+  <Command><![CDATA[
+    ~/gemc/2.6/source/gemc bonus_rtpc.gcard
+    evio2root -B=bonus -INPUTF=bonus_gemc_2.evio
+    
+  ]]><!-- root -b -q bonus_ --></Command> 
+
+  <Job>
+  	<Input src="~/bonus/bonus_rtpc.gcard" dest="bonus_rtpc.gcard"/> 
+  	<Input src="~/gemc/2.6/source/gemc" dest="gemc"/> 
+  	<Input src="~/bonus/bonus__bank.txt" dest="bonus__bank.txt"/>
+  	<Input src="~/bonus/bonus__geometry_original.txt" dest="bonus__geometry_original.txt"/>
+  	<Input src="~/bonus/bonus__hit_original.txt" dest="bonus__hit_original.txt"/>
+  	<Input src="~/bonus/bonus__materials_original.txt" dest="bonus__materials_original.txt"/>
+  	<!-- <Input src="~/bonus/scriptmulti.sh" dest="script.sh"/> 
+	<Input src="~/bonus/PrepData.c" dest="PrepData.c"/> -->
+
+	<!-- change output to reflect file from PrepData.c -->
+     	<Output src="bonus_gemc_2.root" dest="/u/home/nathand/bonus/bonus_gemc_2.root" />
+     	<!-- <Output src="xroot.log" dest="~/bonus/root.log" /> -->
+   </Job>
+
+  
+</Request>
