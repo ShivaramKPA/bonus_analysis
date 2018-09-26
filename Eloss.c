@@ -55,11 +55,15 @@ void Eloss()
     
     TCanvas *c3 = new TCanvas("c3","energy loss v theta",800,600);
     
+    TCanvas *c4 = new TCanvas("c4","delta theta",800,600);
+    
     TH1D *h_eLoss = new TH1D("h_eLoss","Energy loss",100,0,0);
     
-    TH2F *h_Edep_v_phi = new TH2F("h_Edep_v_phi","Eloss vs. Phi",100,0,360,100,0,15);
+    TH1D *h_dTheta = new TH1D("h_dTheta","#it{#Delta#theta}",100,0,0);
     
-    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. Theta",30,10,27,30,0,10);
+    TH2F *h_Edep_v_phi = new TH2F("h_Edep_v_phi","Eloss vs. #it{#phi}",100,0,360,100,0,15);
+    
+    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. #it{#theta}",30,10,27,30,0,10);
     
     int n=0;
     
@@ -84,9 +88,13 @@ void Eloss()
     std::vector<double>* Ypos = 0;
     std::vector<double>* Zpos = 0;
     
-    std::vector<double>* px = 0;
-    std::vector<double>* py = 0;
-    std::vector<double>* pz = 0;
+    std::vector<double>* px_in = 0;
+    std::vector<double>* py_in = 0;
+    std::vector<double>* pz_in = 0;
+    
+    std::vector<double>* px_out = 0;
+    std::vector<double>* py_out = 0;
+    std::vector<double>* pz_out = 0;
     
     TBranch *bcellID =  0;
     tree->SetBranchAddress("CellID",&CellID,&bcellID);
@@ -104,14 +112,24 @@ void Eloss()
     tree->SetBranchAddress("avg_z",&Zpos,&bZpos);
     
     // generated info
-    TBranch *bpx = 0;
-    gen_tree->SetBranchAddress("px",&px,&bpx);
+    TBranch *bpx_in = 0;
+    gen_tree->SetBranchAddress("px",&px_in,&bpx_in);
     
-    TBranch *bpy = 0;
-    gen_tree->SetBranchAddress("py",&py,&bpy);
+    TBranch *bpy_in = 0;
+    gen_tree->SetBranchAddress("py",&py_in,&bpy_in);
     
-    TBranch *bpz = 0;
-    gen_tree->SetBranchAddress("pz",&pz,&bpz);
+    TBranch *bpz_in = 0;
+    gen_tree->SetBranchAddress("pz",&pz_in,&bpz_in);
+    
+    // mom out info
+    TBranch *bpx_out = 0;
+    tree->SetBranchAddress("px",&px_out,&bpx_out);
+    
+    TBranch *bpy_out = 0;
+    tree->SetBranchAddress("py",&py_out,&bpy_out);
+    
+    TBranch *bpz_out = 0;
+    tree->SetBranchAddress("pz",&pz_out,&bpz_out);
     
     
     //________________________________________________________________________________________________
@@ -133,21 +151,29 @@ void Eloss()
         bYpos->GetEntry(tentry);
         bZpos->GetEntry(tentry);
         
+        bpx_out->GetEntry(tentry);
+        bpy_out->GetEntry(tentry);
+        bpz_out->GetEntry(tentry);
+        
         // Get generated mom info
-        bpx->GetEntry(gen_tentry);
-        bpy->GetEntry(gen_tentry);
-        bpz->GetEntry(gen_tentry);
+        bpx_in->GetEntry(gen_tentry);
+        bpy_in->GetEntry(gen_tentry);
+        bpz_in->GetEntry(gen_tentry);
         
         double totEloss=0;
         
-        double p_tot = 0;
+        double p_tot_in = 0;
+        double p_tot_out = 0;
+        
         double phi_track = 0;
         double theta_track = 0;
+        
+        double theta_out = 0;
         
         // ________________________________________ Reconstruction _______________________________________
         
         // find postition from Cell ID
-        for (UInt_t s = 0; s < CellID->size(); s++) {
+        for (UInt_t s = 0; s < Xpos->size(); s++) {
             
             // generated r position
             double r_pos=TMath::Sqrt(((Xpos->at(s))*(Xpos->at(s)))+((Ypos->at(s))*(Ypos->at(s))));
@@ -160,12 +186,18 @@ void Eloss()
         
         
         
-        p_tot = TMath::Sqrt((px->at(0)*px->at(0)) + (py->at(0)*py->at(0)) + (pz->at(0)*pz->at(0)));
-        phi_track = TMath::ATan2((py->at(0)),(px->at(0)))*(180/PI)+180.0;
-        theta_track = TMath::ACos(pz->at(0)/p_tot)*(180/PI);
+        p_tot_in = TMath::Sqrt((px_in->at(0)*px_in->at(0)) + (py_in->at(0)*py_in->at(0)) + (pz_in->at(0)*pz_in->at(0)));
+        
+        p_tot_out = TMath::Sqrt((px_out->back()*px_out->back()) + (py_out->back()*py_out->back()) + (pz_out->back()*pz_out->back()));
+        
+        phi_track = TMath::ATan2((py_in->at(0)),(px_in->at(0)))*(180/PI)+180.0;
+        theta_track = TMath::ACos(pz_in->at(0)/p_tot_in)*(180/PI);
+
+        theta_out = TMath::ACos(pz_in->back()/p_tot_out)*(180/PI);
         
         // if(totEloss != 0.0)
         h_eLoss->Fill(totEloss);
+        h_dTheta->Fill(theta_track-theta_out);
         h_Edep_v_phi->Fill(phi_track, totEloss);
         h_Edep_v_theta->Fill(theta_track, totEloss);
         
@@ -182,7 +214,7 @@ void Eloss()
     c1->cd();
     h_eLoss->Draw();
     //h_eLoss->SetLineColor(kBlue);
-    h_eLoss->GetXaxis()->SetTitle("Edep/track [MeV]");
+    h_eLoss->GetXaxis()->SetTitle("#it{E}_{dep}/track [MeV]");
     //h_r->GetYaxis()->SetTitle("Counts");
     c1->SaveAs("figs/Edep.png");
     // -------------------------------------------------------------------
@@ -190,9 +222,9 @@ void Eloss()
     // --------------------------- Eloss vs Phi ---------------------------
     c2->cd();
     h_Edep_v_phi->Draw("CONT4");
-    h_Edep_v_phi->SetTitle("Edep v #phi");
+    h_Edep_v_phi->SetTitle("Edep v #it{#phi}");
     //h_Edep_v_phi->SetLineColor(kBlue);
-    h_Edep_v_phi->GetXaxis()->SetTitle("#phi [deg]");
+    h_Edep_v_phi->GetXaxis()->SetTitle("#it{#phi} [deg]");
     h_Edep_v_phi->GetYaxis()->SetTitle("Edep/track [MeV]");
     c2->SaveAs("figs/Edep_v_phi.png");
     // -------------------------------------------------------------------
@@ -200,12 +232,21 @@ void Eloss()
     // --------------------------- Eloss vs Theta ---------------------------
     c3->cd();
     h_Edep_v_theta->Draw("CONTZ");
-    h_Edep_v_theta->SetTitle("Edep v #theta");
+    h_Edep_v_theta->SetTitle("Edep v #it{#theta}");
     //h_Edep_v_theta->SetLineColor(kBlue);
-    h_Edep_v_theta->GetXaxis()->SetTitle("#theta [deg]");
+    h_Edep_v_theta->GetXaxis()->SetTitle("#it{#theta} [deg]");
     h_Edep_v_theta->GetYaxis()->SetTitle("Edep/track [MeV]");
     c3->SaveAs("figs/Edep_v_theta.png");
     // -------------------------------------------------------------------
+    
+    // --------------------------- Change in theta histogram ---------------------------
+    c4->cd();
+    h_dTheta->Draw();
+    h_dTheta->GetXaxis()->SetTitle("#it{#theta}_{in} - #it{#theta}_{out} [deg]");
+    //h_r->GetYaxis()->SetTitle("Counts");
+    c4->SaveAs("figs/dTheta.png");
+    // -------------------------------------------------------------------
+    
     
     gPad->Update();
     
