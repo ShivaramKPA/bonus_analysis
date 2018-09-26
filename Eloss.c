@@ -59,7 +59,7 @@ void Eloss()
     
     TH2F *h_Edep_v_phi = new TH2F("h_Edep_v_phi","Eloss vs. Phi",100,0,360,100,0,15);
     
-    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. Theta",100,0,0,100,0,0);
+    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. Theta",30,10,27,30,0,10);
     
     int n=0;
     
@@ -160,11 +160,12 @@ void Eloss()
         
         
         
-        p_tot = TMath::Sqrt((px->at(0)*px->at(0)) + (py->at(0)*py->at(0)));
+        p_tot = TMath::Sqrt((px->at(0)*px->at(0)) + (py->at(0)*py->at(0)) + (pz->at(0)*pz->at(0)));
         phi_track = TMath::ATan2((py->at(0)),(px->at(0)))*(180/PI)+180.0;
-        theta_track = TMath::ATan2(p_tot,pz->at(0))*(180/PI);
+        theta_track = TMath::ACos(pz->at(0)/p_tot)*(180/PI);
         
-        if(totEloss != 0.0) h_eLoss->Fill(totEloss);
+        // if(totEloss != 0.0)
+        h_eLoss->Fill(totEloss);
         h_Edep_v_phi->Fill(phi_track, totEloss);
         h_Edep_v_theta->Fill(theta_track, totEloss);
         
@@ -198,7 +199,7 @@ void Eloss()
     
     // --------------------------- Eloss vs Theta ---------------------------
     c3->cd();
-    h_Edep_v_theta->Draw("CONT");
+    h_Edep_v_theta->Draw("CONTZ");
     h_Edep_v_theta->SetTitle("Edep v #theta");
     //h_Edep_v_theta->SetLineColor(kBlue);
     h_Edep_v_theta->GetXaxis()->SetTitle("#theta [deg]");
