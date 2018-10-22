@@ -6,7 +6,7 @@
    multigraph->SetName("");
    multigraph->SetTitle("#sigma_{t}_{d} vs r");
    
-   Double_t Graph_fx1109[9] = {
+   Double_t Graph_fx1037[9] = {
    3.1,
    3.5,
    4,
@@ -16,17 +16,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1109[9] = {
-   29.2302,
-   29.5884,
-   28.6999,
-   26.778,
-   22.4365,
-   25.8536,
-   18.7653,
-   14.5105,
-   6.05247};
-   Double_t Graph_fex1109[9] = {
+   Double_t Graph_fy1037[9] = {
+   25.1225,
+   30.7316,
+   32.8523,
+   37.3773,
+   32.413,
+   23.1283,
+   24.5472,
+   17.7795,
+   7.26676};
+   Double_t Graph_fex1037[9] = {
    0,
    0,
    0,
@@ -36,33 +36,33 @@
    0,
    0,
    0};
-   Double_t Graph_fey1109[9] = {
-   1.24207,
-   1.21537,
-   1.34443,
-   1.04935,
-   0.871928,
-   0.729927,
-   0.734899,
-   0.439147,
-   0.251086};
-   gre = new TGraphErrors(9,Graph_fx1109,Graph_fy1109,Graph_fex1109,Graph_fey1109);
+   Double_t Graph_fey1037[9] = {
+   6.0066,
+   6.54693,
+   6.45825,
+   9.80349,
+   8.62312,
+   4.04627,
+   4.17741,
+   3.1704,
+   2.12024};
+   gre = new TGraphErrors(9,Graph_fx1037,Graph_fy1037,Graph_fex1037,Graph_fey1037);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1109 = new TH1F("Graph_Graph1109","Graph",100,2.72,7.28);
-   Graph_Graph1109->SetMinimum(3.30115);
-   Graph_Graph1109->SetMaximum(33.304);
-   Graph_Graph1109->SetDirectory(0);
-   Graph_Graph1109->SetStats(0);
-   gre->SetHistogram(Graph_Graph1109);
+   TH1F *Graph_Graph1037 = new TH1F("Graph_Graph1037","Graph",100,2.72,7.28);
+   Graph_Graph1037->SetMinimum(0.943093);
+   Graph_Graph1037->SetMaximum(51.3842);
+   Graph_Graph1037->SetDirectory(0);
+   Graph_Graph1037->SetStats(0);
+   gre->SetHistogram(Graph_Graph1037);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1110[9] = {
+   Double_t Graph_fx1038[9] = {
    3.1,
    3.5,
    4,
@@ -72,17 +72,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1110[9] = {
-   30.3422,
-   29.4611,
-   26.3213,
-   26.0193,
-   25.8689,
-   21.8045,
-   20.0273,
-   12.7769,
-   6.9929};
-   Double_t Graph_fex1110[9] = {
+   Double_t Graph_fy1038[9] = {
+   45.2231,
+   48.8116,
+   26.0933,
+   28.2662,
+   34.8137,
+   30.7452,
+   29.6279,
+   13.6175,
+   5.15297};
+   Double_t Graph_fex1038[9] = {
    0,
    0,
    0,
@@ -92,17 +92,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1110[9] = {
-   1.24873,
-   1.23779,
-   0.978658,
-   1.06969,
-   0.998819,
-   0.914399,
-   0.84109,
-   0.527136,
-   0.293209};
-   gre = new TGraphErrors(9,Graph_fx1110,Graph_fy1110,Graph_fex1110,Graph_fey1110);
+   Double_t Graph_fey1038[9] = {
+   9.73181,
+   14.5631,
+   4.74398,
+   4.90346,
+   7.66725,
+   6.74596,
+   5.37632,
+   2.50897,
+   3.18366};
+   gre = new TGraphErrors(9,Graph_fx1038,Graph_fy1038,Graph_fex1038,Graph_fey1038);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -110,16 +110,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1110 = new TH1F("Graph_Graph1110","Graph",100,2.72,7.28);
-   Graph_Graph1110->SetMinimum(4.21057);
-   Graph_Graph1110->SetMaximum(34.0801);
-   Graph_Graph1110->SetDirectory(0);
-   Graph_Graph1110->SetStats(0);
-   gre->SetHistogram(Graph_Graph1110);
+   TH1F *Graph_Graph1038 = new TH1F("Graph_Graph1038","Graph",100,2.72,7.28);
+   Graph_Graph1038->SetMinimum(1.77238);
+   Graph_Graph1038->SetMaximum(69.5152);
+   Graph_Graph1038->SetDirectory(0);
+   Graph_Graph1038->SetStats(0);
+   gre->SetHistogram(Graph_Graph1038);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1111[9] = {
+   Double_t Graph_fx1039[9] = {
    3.1,
    3.5,
    4,
@@ -129,17 +129,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1111[9] = {
-   31.596,
-   27.8471,
-   25.7786,
-   25.0546,
-   29.7535,
-   21.3839,
-   23.0089,
-   14.7259,
-   6.90231};
-   Double_t Graph_fex1111[9] = {
+   Double_t Graph_fy1039[9] = {
+   38.2701,
+   30.1537,
+   33.3057,
+   29.5365,
+   28.0308,
+   28.2062,
+   35.7995,
+   22.0911,
+   9.8714};
+   Double_t Graph_fex1039[9] = {
    0,
    0,
    0,
@@ -149,17 +149,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1111[9] = {
-   1.25408,
-   1.04339,
-   1.10079,
-   1.00323,
-   1.56836,
-   0.854004,
-   0.640883,
-   0.465881,
-   0.220096};
-   gre = new TGraphErrors(9,Graph_fx1111,Graph_fy1111,Graph_fex1111,Graph_fey1111);
+   Double_t Graph_fey1039[9] = {
+   6.20501,
+   5.69988,
+   6.17566,
+   5.32207,
+   4.79438,
+   2.24644,
+   11.7752,
+   7.20071,
+   1.85747};
+   gre = new TGraphErrors(9,Graph_fx1039,Graph_fy1039,Graph_fex1039,Graph_fey1039);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -167,16 +167,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1111 = new TH1F("Graph_Graph1111","Graph",100,2.72,7.28);
-   Graph_Graph1111->SetMinimum(4.06543);
-   Graph_Graph1111->SetMaximum(35.4669);
-   Graph_Graph1111->SetDirectory(0);
-   Graph_Graph1111->SetStats(0);
-   gre->SetHistogram(Graph_Graph1111);
+   TH1F *Graph_Graph1039 = new TH1F("Graph_Graph1039","Graph",100,2.72,7.28);
+   Graph_Graph1039->SetMinimum(4.05785);
+   Graph_Graph1039->SetMaximum(51.5308);
+   Graph_Graph1039->SetDirectory(0);
+   Graph_Graph1039->SetStats(0);
+   gre->SetHistogram(Graph_Graph1039);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1112[9] = {
+   Double_t Graph_fx1040[9] = {
    3.1,
    3.5,
    4,
@@ -186,17 +186,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1112[9] = {
-   25.8842,
-   30.1976,
-   26.8211,
-   24.7646,
-   24.6906,
-   22.3199,
-   19.1085,
-   12.8893,
-   6.69598};
-   Double_t Graph_fex1112[9] = {
+   Double_t Graph_fy1040[9] = {
+   35.8543,
+   32.3121,
+   39.6636,
+   29.1931,
+   38.4252,
+   25.4011,
+   27.0958,
+   20.9858,
+   9.74676};
+   Double_t Graph_fex1040[9] = {
    0,
    0,
    0,
@@ -206,17 +206,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1112[9] = {
-   1.05898,
-   1.31267,
-   1.12558,
-   1.06837,
-   0.994015,
-   0.847037,
-   0.904993,
-   0.560166,
-   0.254771};
-   gre = new TGraphErrors(9,Graph_fx1112,Graph_fy1112,Graph_fex1112,Graph_fey1112);
+   Double_t Graph_fey1040[9] = {
+   6.85307,
+   5.23438,
+   8.12424,
+   6.02257,
+   9.024,
+   4.55003,
+   5.03408,
+   4.9939,
+   2.1525};
+   gre = new TGraphErrors(9,Graph_fx1040,Graph_fy1040,Graph_fex1040,Graph_fey1040);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -224,16 +224,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1112 = new TH1F("Graph_Graph1112","Graph",100,2.72,7.28);
-   Graph_Graph1112->SetMinimum(3.9343);
-   Graph_Graph1112->SetMaximum(34.0172);
-   Graph_Graph1112->SetDirectory(0);
-   Graph_Graph1112->SetStats(0);
-   gre->SetHistogram(Graph_Graph1112);
+   TH1F *Graph_Graph1040 = new TH1F("Graph_Graph1040","Graph",100,2.72,7.28);
+   Graph_Graph1040->SetMinimum(3.5749);
+   Graph_Graph1040->SetMaximum(51.8072);
+   Graph_Graph1040->SetDirectory(0);
+   Graph_Graph1040->SetStats(0);
+   gre->SetHistogram(Graph_Graph1040);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1113[9] = {
+   Double_t Graph_fx1041[9] = {
    3.1,
    3.5,
    4,
@@ -243,17 +243,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1113[9] = {
-   28.7466,
-   28.5049,
-   22.7742,
-   25.0495,
-   24.0274,
-   24.0352,
-   22.4133,
-   15.9336,
-   6.704};
-   Double_t Graph_fex1113[9] = {
+   Double_t Graph_fy1041[9] = {
+   42.0425,
+   37.4574,
+   24.8777,
+   32.5755,
+   36.8723,
+   31.0018,
+   21.2976,
+   13.8519,
+   8.54205};
+   Double_t Graph_fex1041[9] = {
    0,
    0,
    0,
@@ -263,17 +263,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1113[9] = {
-   1.21126,
-   1.15066,
-   0.79847,
-   0.960503,
-   0.876151,
-   0.906762,
-   0.700953,
-   0.438141,
-   0.257788};
-   gre = new TGraphErrors(9,Graph_fx1113,Graph_fy1113,Graph_fex1113,Graph_fey1113);
+   Double_t Graph_fey1041[9] = {
+   8.9227,
+   6.88496,
+   3.58453,
+   6.60128,
+   8.13226,
+   5.74539,
+   3.99874,
+   1.95276,
+   1.75562};
+   gre = new TGraphErrors(9,Graph_fx1041,Graph_fy1041,Graph_fex1041,Graph_fey1041);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -281,16 +281,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1113 = new TH1F("Graph_Graph1113","Graph",100,2.72,7.28);
-   Graph_Graph1113->SetMinimum(4.09505);
-   Graph_Graph1113->SetMaximum(32.309);
-   Graph_Graph1113->SetDirectory(0);
-   Graph_Graph1113->SetStats(0);
-   gre->SetHistogram(Graph_Graph1113);
+   TH1F *Graph_Graph1041 = new TH1F("Graph_Graph1041","Graph",100,2.72,7.28);
+   Graph_Graph1041->SetMinimum(2.36855);
+   Graph_Graph1041->SetMaximum(55.3831);
+   Graph_Graph1041->SetDirectory(0);
+   Graph_Graph1041->SetStats(0);
+   gre->SetHistogram(Graph_Graph1041);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1114[9] = {
+   Double_t Graph_fx1042[9] = {
    3.1,
    3.5,
    4,
@@ -300,17 +300,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1114[9] = {
-   28.551,
-   28.4971,
-   25.8622,
-   26.7617,
-   24.0515,
-   27.4591,
-   21.7022,
-   14.7628,
-   6.44206};
-   Double_t Graph_fex1114[9] = {
+   Double_t Graph_fy1042[9] = {
+   36.8646,
+   34.474,
+   25.8173,
+   37.8122,
+   32.4846,
+   32.031,
+   27.1239,
+   15.1818,
+   7.94243};
+   Double_t Graph_fex1042[9] = {
    0,
    0,
    0,
@@ -320,17 +320,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1114[9] = {
-   1.20666,
-   1.28276,
-   0.954335,
-   1.12086,
-   0.970093,
-   0.986289,
-   0.741688,
-   0.438246,
-   0.233441};
-   gre = new TGraphErrors(9,Graph_fx1114,Graph_fy1114,Graph_fex1114,Graph_fey1114);
+   Double_t Graph_fey1042[9] = {
+   6.75859,
+   6.39716,
+   3.51514,
+   7.78763,
+   6.3207,
+   9.08278,
+   5.75799,
+   1.26386,
+   0.776315};
+   gre = new TGraphErrors(9,Graph_fx1042,Graph_fy1042,Graph_fex1042,Graph_fey1042);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -338,16 +338,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1114 = new TH1F("Graph_Graph1114","Graph",100,2.72,7.28);
-   Graph_Graph1114->SetMinimum(3.85149);
-   Graph_Graph1114->SetMaximum(32.137);
-   Graph_Graph1114->SetDirectory(0);
-   Graph_Graph1114->SetStats(0);
-   gre->SetHistogram(Graph_Graph1114);
+   TH1F *Graph_Graph1042 = new TH1F("Graph_Graph1042","Graph",100,2.72,7.28);
+   Graph_Graph1042->SetMinimum(3.32274);
+   Graph_Graph1042->SetMaximum(49.4432);
+   Graph_Graph1042->SetDirectory(0);
+   Graph_Graph1042->SetStats(0);
+   gre->SetHistogram(Graph_Graph1042);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1115[9] = {
+   Double_t Graph_fx1043[9] = {
    3.1,
    3.5,
    4,
@@ -357,17 +357,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1115[9] = {
-   30.4804,
-   26.9286,
-   28.7042,
-   25.3424,
-   24.7189,
-   22.2829,
-   19.2258,
-   14.3192,
-   6.80384};
-   Double_t Graph_fex1115[9] = {
+   Double_t Graph_fy1043[9] = {
+   49.426,
+   31.3864,
+   38.9165,
+   32.4095,
+   43.9832,
+   24.4538,
+   24.4279,
+   15.4337,
+   9.87914};
+   Double_t Graph_fex1043[9] = {
    0,
    0,
    0,
@@ -377,17 +377,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1115[9] = {
-   1.38117,
-   1.02439,
-   1.08798,
-   1.02371,
-   0.95184,
-   0.824445,
-   0.684061,
-   0.522268,
-   0.229139};
-   gre = new TGraphErrors(9,Graph_fx1115,Graph_fy1115,Graph_fex1115,Graph_fey1115);
+   Double_t Graph_fey1043[9] = {
+   12.1489,
+   4.6737,
+   2.27355,
+   7.10417,
+   11.4963,
+   4.42385,
+   5.84465,
+   1.39053,
+   2.40323};
+   gre = new TGraphErrors(9,Graph_fx1043,Graph_fy1043,Graph_fex1043,Graph_fey1043);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -395,16 +395,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1115 = new TH1F("Graph_Graph1115","Graph",100,2.72,7.28);
-   Graph_Graph1115->SetMinimum(4.04601);
-   Graph_Graph1115->SetMaximum(34.3903);
-   Graph_Graph1115->SetDirectory(0);
-   Graph_Graph1115->SetStats(0);
-   gre->SetHistogram(Graph_Graph1115);
+   TH1F *Graph_Graph1043 = new TH1F("Graph_Graph1043","Graph",100,2.72,7.28);
+   Graph_Graph1043->SetMinimum(2.06601);
+   Graph_Graph1043->SetMaximum(66.9848);
+   Graph_Graph1043->SetDirectory(0);
+   Graph_Graph1043->SetStats(0);
+   gre->SetHistogram(Graph_Graph1043);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1116[9] = {
+   Double_t Graph_fx1044[9] = {
    3.1,
    3.5,
    4,
@@ -414,17 +414,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1116[9] = {
-   28.1514,
-   29.4616,
-   37.5309,
-   34.9881,
-   24.1082,
-   22.609,
-   22.3217,
-   13.4994,
-   5.62323};
-   Double_t Graph_fex1116[9] = {
+   Double_t Graph_fy1044[9] = {
+   35.1561,
+   42.7189,
+   31.8874,
+   34.307,
+   32.2444,
+   38.4698,
+   24.3454,
+   17.3399,
+   7.97082};
+   Double_t Graph_fex1044[9] = {
    0,
    0,
    0,
@@ -434,17 +434,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1116[9] = {
-   1.13925,
-   1.40455,
-   2.35018,
-   1.16836,
-   0.945168,
-   0.866186,
-   0.719946,
-   0.519423,
-   0.260578};
-   gre = new TGraphErrors(9,Graph_fx1116,Graph_fy1116,Graph_fex1116,Graph_fey1116);
+   Double_t Graph_fey1044[9] = {
+   5.56684,
+   8.192,
+   6.60044,
+   8.75462,
+   2.9584,
+   10.3464,
+   5.08767,
+   3.00551,
+   0.727335};
+   gre = new TGraphErrors(9,Graph_fx1044,Graph_fy1044,Graph_fex1044,Graph_fey1044);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -452,16 +452,16 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1116 = new TH1F("Graph_Graph1116","Graph",100,2.72,7.28);
-   Graph_Graph1116->SetMinimum(1.91081);
-   Graph_Graph1116->SetMaximum(43.3329);
-   Graph_Graph1116->SetDirectory(0);
-   Graph_Graph1116->SetStats(0);
-   gre->SetHistogram(Graph_Graph1116);
+   TH1F *Graph_Graph1044 = new TH1F("Graph_Graph1044","Graph",100,2.72,7.28);
+   Graph_Graph1044->SetMinimum(2.87674);
+   Graph_Graph1044->SetMaximum(55.2776);
+   Graph_Graph1044->SetDirectory(0);
+   Graph_Graph1044->SetStats(0);
+   gre->SetHistogram(Graph_Graph1044);
    
    multigraph->Add(gre,"");
    
-   Double_t Graph_fx1117[9] = {
+   Double_t Graph_fx1045[9] = {
    3.1,
    3.5,
    4,
@@ -471,17 +471,17 @@
    6,
    6.5,
    6.9};
-   Double_t Graph_fy1117[9] = {
-   28.486,
-   28.9564,
-   24.5626,
-   24.3323,
-   31.3933,
-   20.0094,
-   16.6143,
-   13.3087,
-   6.46456};
-   Double_t Graph_fex1117[9] = {
+   Double_t Graph_fy1045[9] = {
+   40.5679,
+   42.8955,
+   29.2347,
+   34.5895,
+   33.1942,
+   40.4061,
+   22.198,
+   20.1889,
+   9.51966};
+   Double_t Graph_fex1045[9] = {
    0,
    0,
    0,
@@ -491,17 +491,17 @@
    0,
    0,
    0};
-   Double_t Graph_fey1117[9] = {
-   1.19279,
-   1.1964,
-   0.958631,
-   0.952715,
-   0.99854,
-   0.797354,
-   0.590523,
-   0.543354,
-   0.252611};
-   gre = new TGraphErrors(9,Graph_fx1117,Graph_fy1117,Graph_fex1117,Graph_fey1117);
+   Double_t Graph_fey1045[9] = {
+   10.1294,
+   12.1273,
+   4.95144,
+   7.19185,
+   7.6024,
+   12.714,
+   5.62251,
+   4.20491,
+   1.91055};
+   gre = new TGraphErrors(9,Graph_fx1045,Graph_fy1045,Graph_fex1045,Graph_fey1045);
    gre->SetName("Graph");
    gre->SetTitle("Graph");
    gre->SetFillStyle(1000);
@@ -509,12 +509,12 @@
    gre->SetMarkerStyle(21);
    gre->SetMarkerSize(0.5);
    
-   TH1F *Graph_Graph1117 = new TH1F("Graph_Graph1117","Graph",100,2.72,7.28);
-   Graph_Graph1117->SetMinimum(3.59396);
-   Graph_Graph1117->SetMaximum(35.0098);
-   Graph_Graph1117->SetDirectory(0);
-   Graph_Graph1117->SetStats(0);
-   gre->SetHistogram(Graph_Graph1117);
+   TH1F *Graph_Graph1045 = new TH1F("Graph_Graph1045","Graph",100,2.72,7.28);
+   Graph_Graph1045->SetMinimum(2.86774);
+   Graph_Graph1045->SetMaximum(59.7642);
+   Graph_Graph1045->SetDirectory(0);
+   Graph_Graph1045->SetStats(0);
+   gre->SetHistogram(Graph_Graph1045);
    
    multigraph->Add(gre,"");
    multigraph->Draw("");

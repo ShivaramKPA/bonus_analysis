@@ -1,11 +1,10 @@
 ///////////////////////////////////////////////////////////////////
 //
 // Nate Dzbenski
-// Open data from GEMC .root file, and compare simulation track
-// to recustructed track.
+// 19 Oct 2018
 //
-// To run, type:
-// root rec.c <filename> <number of events>
+// Open data from GEMC .root file, and look at energy loss
+// of electrons through the RTPC
 //
 ///////////////////////////////////////////////////////////////////
 
@@ -14,6 +13,8 @@
 #include "TStyle.h"
 #include "TH1.h"
 #include "TH2F.h"
+#include "TF1.h"
+#include "TLine.h"
 #include "TGaxis.h"
 #include "TRandom.h"
 #include "TFile.h"
@@ -44,6 +45,9 @@ void Eloss()
     
     const double PI = TMath::ACos(-1);
     
+    float bin_cont = 0;
+    int bin_num = 0;
+    
     
     //________________________________________________________________________________________________
     //_____________________________________ Canvas and histograms ____________________________________
@@ -55,15 +59,17 @@ void Eloss()
     
     TCanvas *c3 = new TCanvas("c3","energy loss v theta",800,600);
     
-    TCanvas *c4 = new TCanvas("c4","delta theta",800,600);
+    //TCanvas *c4 = new TCanvas("c4","delta theta",800,600);
     
-    TH1D *h_eLoss = new TH1D("h_eLoss","Energy loss",100,0,0);
+    TH1D *h_eLoss = new TH1D("h_eLoss","Energy loss",50,0,20);
     
     TH1D *h_dTheta = new TH1D("h_dTheta","#it{#Delta#theta}",100,0,0);
     
-    TH2F *h_Edep_v_phi = new TH2F("h_Edep_v_phi","Eloss vs. #it{#phi}",100,0,360,100,0,15);
+    TH2F *h_Edep_v_phi = new TH2F("h_Edep_v_phi","Eloss vs. #it{#phi}",180,0,360,40,0,20);
     
-    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. #it{#theta}",30,10,27,30,0,10);
+    TH2F *h_Edep_v_theta = new TH2F("h_Edep_v_theta","Eloss vs. #it{#theta}",50,11,26,15,0,10);
+    
+    //TF1 *line = new TF1("f1", "11.3", 0, 5);
     
     //________________________________________________________________________________________________
     // ___________________________________________ Openings __________________________________________
@@ -175,9 +181,10 @@ void Eloss()
             // generated r position
             double r_pos=TMath::Sqrt(((Xpos->at(s))*(Xpos->at(s)))+((Ypos->at(s))*(Ypos->at(s))));
             
-            if (r_pos<80) continue;
+            //if (r_pos<80) continue;
             
-            else totEloss += edep->at(s);
+            //else
+            totEloss += edep->at(s);
             
         }// end finding position from Cell ID
         
@@ -192,6 +199,9 @@ void Eloss()
 
         theta_out = TMath::ACos(pz_in->back()/p_tot_out)*(180/PI);
         
+        //if(totEloss == 0 ) continue;
+        //if(phi_track < 6 || phi_track > 15) continue;
+        //if(theta_track < 11 || theta_track > 25) continue;
         // if(totEloss != 0.0)
         h_eLoss->Fill(totEloss);
         h_dTheta->Fill(theta_track-theta_out);
@@ -200,6 +210,11 @@ void Eloss()
         
     } // tree->GetEntries
     
+    /*cout << "Bin       # of entries" << endl;
+    for(int k = 0; k < h_eLoss->GetSize(); k++){
+        if (k==0 || k+1==h_eLoss->GetSize()) continue;
+        cout << k << "        " << h_eLoss->GetBinContent(k) << endl;
+    }*/
     
     
     //________________________________________________________________________________________________
@@ -210,6 +225,7 @@ void Eloss()
     // --------------------------- Eloss histogram ---------------------------
     c1->cd();
     h_eLoss->Draw();
+    h_eLoss->SetTitle("Edep (11.3#circ < #theta < 25.6#circ)");
     //h_eLoss->SetLineColor(kBlue);
     h_eLoss->GetXaxis()->SetTitle("#it{E}_{dep}/track [MeV]");
     //h_r->GetYaxis()->SetTitle("Counts");
@@ -218,8 +234,8 @@ void Eloss()
     
     // --------------------------- Eloss vs Phi ---------------------------
     c2->cd();
-    h_Edep_v_phi->Draw("CONT4");
-    h_Edep_v_phi->SetTitle("Edep v #it{#phi}");
+    h_Edep_v_phi->Draw("COLZ");
+    h_Edep_v_phi->SetTitle("Edep v #it{#phi} (11.3#circ < #theta < 25.6#circ)");
     //h_Edep_v_phi->SetLineColor(kBlue);
     h_Edep_v_phi->GetXaxis()->SetTitle("#it{#phi} [deg]");
     h_Edep_v_phi->GetYaxis()->SetTitle("Edep/track [MeV]");
@@ -229,7 +245,10 @@ void Eloss()
     // --------------------------- Eloss vs Theta ---------------------------
     c3->cd();
     h_Edep_v_theta->Draw("CONTZ");
-    h_Edep_v_theta->SetTitle("Edep v #it{#theta}");
+    TLine *line = new TLine(11.3,0,11.3,5);
+    line->SetLineColor(kRed);
+    line->Draw("same");
+    h_Edep_v_theta->SetTitle("Edep v #it{#theta} (11.3#circ < #theta < 25.6#circ)");
     //h_Edep_v_theta->SetLineColor(kBlue);
     h_Edep_v_theta->GetXaxis()->SetTitle("#it{#theta} [deg]");
     h_Edep_v_theta->GetYaxis()->SetTitle("Edep/track [MeV]");
@@ -237,11 +256,12 @@ void Eloss()
     // -------------------------------------------------------------------
     
     // --------------------------- Change in theta histogram ---------------------------
-    c4->cd();
+    /*c4->cd();
     h_dTheta->Draw();
+    h_dTheta->SetTitle("#Delta#theta (0#circ < #theta < 90#circ)");
     h_dTheta->GetXaxis()->SetTitle("#it{#theta}_{in} - #it{#theta}_{out} [deg]");
     //h_r->GetYaxis()->SetTitle("Counts");
-    c4->SaveAs("figs/dTheta.png");
+    c4->SaveAs("figs/dTheta_allangles.png");*/
     // -------------------------------------------------------------------
     
     

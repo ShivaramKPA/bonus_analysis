@@ -1,0 +1,62 @@
+{
+//========= Macro generated from object: Graph/#phi_{d} vs z
+//========= by ROOT version6.12/06
+   
+   Double_t Graph_fx1047[9] = {
+   -19,
+   -15,
+   -10,
+   -5,
+   0,
+   5,
+   10,
+   15,
+   19};
+   Double_t Graph_fy1047[9] = {
+   0.980011,
+   0.990828,
+   0.995662,
+   0.997039,
+   0.998838,
+   0.995865,
+   0.993505,
+   0.993413,
+   0.976629};
+   Double_t Graph_fex1047[9] = {
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0};
+   Double_t Graph_fey1047[9] = {
+   0.00900979,
+   0.00960376,
+   0.0103908,
+   0.0104792,
+   0.0153287,
+   0.0102535,
+   0.00838353,
+   0.00787928,
+   0.00843516};
+   gre = new TGraphErrors(9,Graph_fx1047,Graph_fy1047,Graph_fex1047,Graph_fey1047);
+   gre->SetName("Graph");
+   gre->SetTitle("#phi_{d} vs z");
+   gre->SetFillStyle(1000);
+   gre->SetMarkerStyle(21);
+   gre->SetMarkerSize(0.5);
+   
+   TH1F *Graph_Graph1047 = new TH1F("Graph_Graph1047","#phi_{d} vs z",100,-22.8,22.8);
+   Graph_Graph1047->SetMinimum(0.963597);
+   Graph_Graph1047->SetMaximum(1.01876);
+   Graph_Graph1047->SetDirectory(0);
+   Graph_Graph1047->SetStats(0);
+   Graph_Graph1047->GetXaxis()->SetTitle("z [cm]");
+   Graph_Graph1047->GetYaxis()->SetTitle("#phi_{d} [rad]");
+   gre->SetHistogram(Graph_Graph1047);
+   
+   gre->Draw("");
+}
